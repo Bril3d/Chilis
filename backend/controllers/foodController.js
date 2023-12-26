@@ -29,7 +29,7 @@ const FoodController = {
     const { title, description, price } = req.body;
 
     try {
-      const newFood = new Food({ title, description, price });
+      const newFood = new Food({ title, description, price, img });
       await newFood.save();
       res.status(201).json(newFood);
     } catch (error) {
@@ -39,12 +39,12 @@ const FoodController = {
   },
 
   updateFood: async (req, res) => {
-    const { title, description, price } = req.body;
+    const { title, description, price, img } = req.body;
 
     try {
       const updatedFood = await Food.findByIdAndUpdate(
         req.params.id,
-        { title, description, price },
+        { title, description, price, img },
         { new: true }
       );
 
