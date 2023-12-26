@@ -1,5 +1,7 @@
 
 const Food = require('../models/Food.js');
+const fs = require("fs");
+const path = require("path");
 
 const FoodController = {
   getAllfood: async (req, res) => {
@@ -29,14 +31,29 @@ const FoodController = {
     const { title, description, price } = req.body;
 
     try {
-      const newFood = new Food({ title, description, price, img });
+      const imgDir = path.join(__dirname, "../../frontend/chilis/uploads"); 
+      const imgFileName = `${title}-${req.file.originalname}`;
+      const imgPath = path.join(imgDir, imgFileName);
+
+      // Make sure the uploads directory exists
+      if (!fs.existsSync(imgDir)) {
+        fs.mkdirSync(imgDir, { recursive: true });
+      }
+
+      fs.writeFileSync(imgPath, req.file.buffer);
+
+
+      const newFood = new Food({ title, description, price, img: imgPath });
+
       await newFood.save();
+
       res.status(201).json(newFood);
     } catch (error) {
       console.error('Error creating Food:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   },
+
 
   updateFood: async (req, res) => {
     const { title, description, price, img } = req.body;
