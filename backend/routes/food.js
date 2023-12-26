@@ -18,7 +18,7 @@ const upload = multer({
 router.get('/food', foodController.getAllfood);
 router.get('/food/:id', foodController.getFoodById);
 router.post('/food', upload.single("img"), foodController.createFood);
-router.put('/food/:id', foodController.updateFood);
+router.put('/food/:id', upload.single("img"), foodController.updateFood);
 router.delete('/food/:id', foodController.deleteFood);
 
 module.exports = router;

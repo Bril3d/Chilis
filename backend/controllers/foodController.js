@@ -31,11 +31,10 @@ const FoodController = {
     const { title, description, price } = req.body;
 
     try {
-      const imgDir = path.join(__dirname, "../../frontend/chilis/uploads"); 
+      const imgDir = path.join(__dirname, "../../frontend/chilis/src/uploads");
       const imgFileName = `${title}-${req.file.originalname}`;
       const imgPath = path.join(imgDir, imgFileName);
 
-      // Make sure the uploads directory exists
       if (!fs.existsSync(imgDir)) {
         fs.mkdirSync(imgDir, { recursive: true });
       }
@@ -56,12 +55,33 @@ const FoodController = {
 
 
   updateFood: async (req, res) => {
-    const { title, description, price, img } = req.body;
+    const { title, description, price } = req.body;
 
     try {
+      let updateFields = { title, description, price };
+
+      // Check if a new image file is provided
+      if (req.file) {
+        const imgDir = path.join(__dirname, "../../frontend/chilis/src/uploads");
+        const imgFileName = `${title}-${req.file.originalname}`;
+        const imgPath = path.join(imgDir, imgFileName);
+
+        if (!fs.existsSync(imgDir)) {
+          fs.mkdirSync(imgDir, { recursive: true });
+        }
+
+        fs.writeFileSync(imgPath, req.file.buffer);
+
+        // Update the food item with the new image path
+        updateFields.img = imgPath;
+      } else {
+        // If no new image is provided, set img to null or omit it from the update
+        updateFields.img = null; // or delete updateFields.img;
+      }
+
       const updatedFood = await Food.findByIdAndUpdate(
         req.params.id,
-        { title, description, price, img },
+        updateFields,
         { new: true }
       );
 
