@@ -1,14 +1,16 @@
 import React from 'react';
-import Greetings from './components/Greetings';
-import contact from './components/contact';
-import Typography from './components/Typography';
+import Home from './pages/Home';
 
 
 function App() {
   return (
-    <div className='font-sans'>
-      <Greetings />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/dashboard" component={About} />
+        <Route path="/dashboard/create" component={createUser} />
+      </Switch>
+    </Router>
   );
 }
 
