@@ -22,17 +22,14 @@ const AddFood = () => {
     })
       .then(response => {
         console.log('Food added successfully:', response.data);
-        // Handle success, e.g., reset form
       })
       .catch(error => {
         console.error('Failed to add food:', error);
-        // Handle error
       });
 
   };
 
   const handleFileChange = (e) => {
-    console.log(e.target.files[0])
     const file = e.target.files[0];
     setImage(file);
   };
