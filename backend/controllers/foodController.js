@@ -38,6 +38,42 @@ const FoodController = {
     }
   },
 
+  updateFood: async (req, res) => {
+    const { title, description, price } = req.body;
+
+    try {
+      const updatedFood = await Food.findByIdAndUpdate(
+        req.params.id,
+        { title, description, price },
+        { new: true }
+      );
+
+      if (!updatedFood) {
+        return res.status(404).json({ error: 'Food not found' });
+      }
+
+      res.json(updatedFood);
+    } catch (error) {
+      console.error('Error updating Food:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
+
+
+  deleteFood: async (req, res) => {
+    try {
+      const deletedFood = await Food.findByIdAndDelete(req.params.id);
+
+      if (!deletedFood) {
+        return res.status(404).json({ error: 'Food not found' });
+      }
+
+      res.json({ message: 'Food deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting Food:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  },
 
 };
 
