@@ -21,6 +21,10 @@ const DashboardView = () => {
   };
 
   const handleEditClick = (food) => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
     setEditedFood(food);
     setEditMode(true);
   };

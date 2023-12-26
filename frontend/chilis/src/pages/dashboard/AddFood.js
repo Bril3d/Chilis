@@ -1,12 +1,13 @@
-// AddFood.js
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 const AddFood = () => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [img, setImage] = useState(null);
   const [price, setPrice] = useState("");
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -22,6 +23,7 @@ const AddFood = () => {
     })
       .then(response => {
         console.log('Food added successfully:', response.data);
+        navigate('/dashboard/view');
       })
       .catch(error => {
         console.error('Failed to add food:', error);

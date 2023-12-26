@@ -12,7 +12,7 @@ const Login = () => {
 
     axios.post('/api/login', { email, password })
       .then(() => {
-        navigate('/dashboard');
+        navigate('/dashboard/view');
       })
       .catch((error) => {
         console.error('Login failed:', error);
