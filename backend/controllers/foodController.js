@@ -2,6 +2,7 @@
 const Food = require('../models/Food.js');
 const fs = require("fs");
 const path = require("path");
+require('dotenv').config();
 
 const FoodController = {
   getAllfood: async (req, res) => {
@@ -31,9 +32,10 @@ const FoodController = {
     const { title, description, price } = req.body;
 
     try {
-      const imgDir = path.join(__dirname, "../../frontend/chilis/src/uploads");
+      const imgDir = path.join(__dirname, "../uploads");
       const imgFileName = `${title}-${req.file.originalname}`;
       const imgPath = path.join(imgDir, imgFileName);
+      const imgDB = `${process.env.APP_URL}:${process.env.PORT}/uploads/${imgFileName}`;
 
       if (!fs.existsSync(imgDir)) {
         fs.mkdirSync(imgDir, { recursive: true });
@@ -42,7 +44,7 @@ const FoodController = {
       fs.writeFileSync(imgPath, req.file.buffer);
 
 
-      const newFood = new Food({ title, description, price, img: imgPath });
+      const newFood = new Food({ title, description, price, img: imgDB });
 
       await newFood.save();
 
@@ -60,11 +62,12 @@ const FoodController = {
     try {
       let updateFields = { title, description, price };
 
-      // Check if a new image file is provided
       if (req.file) {
-        const imgDir = path.join(__dirname, "../../frontend/chilis/src/uploads");
+        const imgDir = path.join(__dirname, "../uploads");
         const imgFileName = `${title}-${req.file.originalname}`;
         const imgPath = path.join(imgDir, imgFileName);
+        const imgDB = `${process.env.APP_URL}:${process.env.PORT}/uploads/${imgFileName}`;
+
 
         if (!fs.existsSync(imgDir)) {
           fs.mkdirSync(imgDir, { recursive: true });
@@ -72,11 +75,7 @@ const FoodController = {
 
         fs.writeFileSync(imgPath, req.file.buffer);
 
-        // Update the food item with the new image path
-        updateFields.img = imgPath;
-      } else {
-        // If no new image is provided, set img to null or omit it from the update
-        updateFields.img = null; // or delete updateFields.img;
+        updateFields.img = imgDB;
       }
 
       const updatedFood = await Food.findByIdAndUpdate(

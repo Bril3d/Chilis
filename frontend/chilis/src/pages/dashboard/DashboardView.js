@@ -121,28 +121,35 @@ const DashboardView = () => {
           </div>
         </div>
       )}
-
-      {foods.map((food) => (
-        <div key={food._id} className="bg-white p-4 mb-4 shadow-md rounded">
-          <h2 className="text-xl font-bold mb-2">{food.title}</h2>
-          <p className="text-gray-700 mb-2">{food.description}</p>
-          <p className="text-green-500 font-bold">Price: ${food.price}</p>
-          <div className="flex mt-4">
-            <button
-              onClick={() => handleEditClick(food)}
-              className="bg-blue-500 text-white py-2 px-4 rounded mr-2 hover:bg-blue-600"
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => deleteFood(food._id)}
-              className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
-            >
-              Delete
-            </button>
+      <div className="flex items-center flex-wrap gap-2">
+        {foods.map((food) => (
+          <div key={food._id} className="bg-white p-4 mb-4 shadow-md rounded w-1/3 h-[30rem]">
+            <img
+              src={food.img}
+              alt={food.title}
+              className="w-full h-2/3 object-cover mb-2 rounded max-h-2/3"
+            />
+            <h2 className="text-xl font-bold mb-2">{food.title}</h2>
+            <p className="text-gray-700 mb-2">{food.description}</p>
+            <p className="text-green-500 font-bold">Price: ${food.price}</p>
+            <div className="flex mt-4">
+              <button
+                onClick={() => handleEditClick(food)}
+                className="bg-blue-500 text-white py-2 px-4 rounded mr-2 hover:bg-blue-600"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => deleteFood(food._id)}
+                className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+              >
+                Delete
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
     </div>
   );
 };
