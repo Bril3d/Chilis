@@ -127,7 +127,7 @@ const DashboardView = () => {
       )}
       <div className="flex items-center flex-wrap gap-2">
         {foods.map((food) => (
-          <div key={food._id} className="bg-white p-4 mb-4 shadow-md rounded w-[32%] h-[30rem]">
+          <div key={food._id} className="bg-white p-4 mb-4 shadow-md rounded w-full sm:w-[32%] h-[30rem]">
             <img
               src={food.img}
               alt={food.title}
