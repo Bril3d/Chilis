@@ -31,7 +31,7 @@ const Home = () => {
       <Header />
       <div className="my-20 sm:px-24 px-8 ">
         <Typography type='h1' />
-        <Typography type='h2'  />
+        <Typography type='h2' />
         <div className="flex items-center gap-2 flex-wrap my-3">
           {foods.slice(0, visibleItems).map((food) => (
             <Card key={food._id} food={food} />
@@ -48,9 +48,21 @@ const Home = () => {
           </div>
         )}
         <Typography type='h2' />
-        <div className="flex items-center gap-14 flex-wrap my-3">
-          {foods.map((food) => (<Card key={food._id} food={food} />))}
+        <div className="flex items-center gap-2 flex-wrap my-3">
+          {foods.slice(0, visibleItems).map((food) => (
+            <Card key={food._id} food={food} />
+          ))}
         </div>
+        {visibleItems < foods.length && (
+          <div className="flex justify-center mt-4">
+            <a
+              className="text-red-600 p-2 rounded"
+              onClick={loadMore}
+            >
+              Voir Plus
+            </a>
+          </div>
+        )}
       </div>
       <Contact />
     </>
