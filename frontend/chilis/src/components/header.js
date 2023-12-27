@@ -47,15 +47,17 @@ const Header = () => {
       />
       <img src={Logo} alt="logo" className="w-20 text-[#db2222]" />
 
-      <div className="flex justify-center gap-10 sm:gap-56 items-center relative ">
-        <img
-          src={img2}
-          alt="img"
-          className=" rounded-[50%] sm:w-96 sm:h-96 border-2 border-solid border-[#db2222] w-24 h-24"
-        />
-        <div>
+      <div className="flex justify-between items-center relative sm:px-10">
+        <div className="flex justify-center w-1/2">
+          <img
+            src={img2}
+            alt="img"
+            className=" rounded-[50%] sm:w-96 sm:h-96 border-2 border-solid border-[#db2222] w-24 h-24"
+          />
+        </div>
+        <div className="w-1/2">
           <h1 className="text-2xl text-white z-10">Chili's Tunisie</h1>
-          <p className="text-[#6ee22a] sm:text-6xl sm:mb-14 mb-7 font-bold italic text-xl max-w-80">
+          <p className="text-[#6ee22a] sm:text-6xl sm:mb-14 mb-7 font-bold italic text-xl ">
             Decouvrez Les meilleures recettes syriennes
           </p>
           <a href="#menu" className="bg-[#db2222] text-white sm:text-lg text-sm p-3 rounded-lg z-[24]">
