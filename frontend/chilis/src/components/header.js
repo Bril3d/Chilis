@@ -1,6 +1,6 @@
 import React from "react";
 import Logo from "../assets/imgs/logo.png";
-import img2 from "../assets/imgs/img2.png";
+import img2 from "../assets/imgs/fajita.jpg";
 import { Circle, CircleGrid } from "react-awesome-shapes";
 
 
@@ -47,11 +47,11 @@ const Header = () => {
       />
       <img src={Logo} alt="logo" className="w-20 text-[#db2222]" />
 
-      <div className="flex justify-center gap-10 sm:gap-56 items-center relative">
+      <div className="flex justify-center gap-10 sm:gap-56 items-center relative ">
         <img
           src={img2}
           alt="img"
-          className="rounded-[50%] sm:w-2/5 border-2 border-solid border-[#db2222] w-40"
+          className=" rounded-[50%] sm:w-96 sm:h-96 border-2 border-solid border-[#db2222] w-24 h-24"
         />
         <div>
           <h1 className="text-2xl text-white z-10">Chili's Tunisie</h1>
