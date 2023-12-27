@@ -2,23 +2,14 @@ import React from 'react';
 import img3 from "../assets/imgs/img3.png"
 
 const Contact = () => {
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  // }
+
   return (
-    <div className="max-h-screen    bg-[#db2222] sm:py-4 sm:px-10 py-2 px-5 rounded-lg mt-8 mb-16  mr-auto ml-auto w-fit">
+    <div className="bg-[#db2222] sm:py-4 sm:px-10 py-2 px-5 rounded-lg mt-8 mb-16  mr-auto ml-auto w-[70%]">
       <h1 className='text-white text-3xl text-center font-bold sm:mb-14 mb-8 p-2 '>Prendre Contact </h1>
-      <div className="flex sm:justify-between flex-wrap  justify-center items-center   gap-10  sm:gap-20 p-2 rounded-lg   w-full">
-        <img
-          src={img3}
-          alt="Header"
-          className="sm:mb-4 mb-2  rounded-full sm:w-60 sm:h-60  w-40 h-40 flex justify-center items-center"
-        />
-        <form >
-          <div className="mb-4">
-            <label htmlFor="username" className="block text-white font-bold mb-2">
-              Nom D'utilisateur
-            </label>
+      <div className="flex sm:flex-row flex-col sm:justify-between flex-wrap justify-center items-center gap-3 p-2 rounded-lg w-full">
+
+        <form className='sm:w-[32%]'>
+          <div className="mb-4 min-w-full">
             <input
               type="text"
               id="username"
@@ -28,10 +19,7 @@ const Contact = () => {
               required
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-white font-bold mb-2">
-              Email
-            </label>
+          <div className="mb-4 w-full">
             <input
               type="email"
               id="email"
@@ -41,10 +29,7 @@ const Contact = () => {
               required
             />
           </div>
-          <div className="mb-4">
-            <label htmlFor="message" className="block text-white font-bold mb-2">
-              Message
-            </label>
+          <div className="mb-4 w-full">
             <textarea
               id="message"
               name="message"
@@ -61,6 +46,13 @@ const Contact = () => {
             Envoyer
           </button>
         </form>
+        <div className='w-1/2 h-full flex justify-center items-center'>
+          <img
+            src={img3}
+            alt="Header"
+            className="sm:mb-4 mb-2  rounded-full sm:w-60 sm:h-60  w-40 h-40 flex justify-center items-center"
+          />
+        </div>
       </div>
     </div>
   )

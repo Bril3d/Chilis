@@ -135,7 +135,7 @@ const DashboardView = () => {
             />
             <h2 className="text-xl font-bold mb-2">{food.title}</h2>
             <p className="text-gray-700 mb-2">{food.description}</p>
-            <p className="text-green-500 font-bold">Price: ${food.price}</p>
+            <p className="text-green-500 font-bold">Price: {food.price} DT</p>
             <div className="flex mt-4">
               <button
                 onClick={() => handleEditClick(food)}
